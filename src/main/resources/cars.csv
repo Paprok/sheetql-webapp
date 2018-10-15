@@ -1,0 +1,21 @@
+person_id,car_make,car_model
+2,Suzuki,SJ
+3,Chrysler,Sebring
+4,Toyota,Paseo
+5,Pontiac,Grand Prix
+6,Chevrolet,Monte Carlo
+7,Hyundai,Veracruz
+8,BMW,M Roadster
+9,Daewoo,Leganza
+10,Buick,Lucerne
+11,Toyota,Tacoma
+12,Dodge,Dakota Club
+13,Mazda,B-Series
+14,Ford,Explorer Sport
+15,Acura,CL
+1,Maybach,57
+2,Cadillac,Escalade
+3,Chevrolet,Express 3500
+4,Ford,E350
+5,Chevrolet,Suburban 2500
+6,Mazda,626 Select car_model from cars where person_id > 10;
