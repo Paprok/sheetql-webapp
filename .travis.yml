@@ -3,7 +3,7 @@ jdk: oraclejdk8
 sudo: false
 install: true
 script:
-  - mvn -DtestSourceDirectory=src/test/java/com/codecool/service/dataManipulation test
+  - mvn -DtestSourceDirectory=src/test/java/com/codecool/service/dataManipulation clean compile test
   - mvn clean verify
 cache:
   directories:
