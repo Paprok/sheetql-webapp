@@ -7,7 +7,7 @@ body {
 }
 
 .headerWrapper{
-  padding: 5px 40px;
+  padding-top: 0.2vh;
   box-sizing:border-box;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.15);
   height: 80px;
@@ -19,6 +19,8 @@ body {
   text-align: center;
   margin: 0 auto;
   height: inherit;
+  width: 80%;
+  padding-top: 1vh;
 }
 
 #headerLogo {
