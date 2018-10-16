@@ -16,7 +16,10 @@ public class EntryWrapper {
     public String get(String key) {
         for (int i = 0; i < headers.getContent().length; i++) {
             if (headers.getContent()[i].equalsIgnoreCase(key)) {
-                return entry.getContent()[i];
+                if (i < entry.getContent().length) {
+                    return entry.getContent()[i];
+                }
+                return "null";
             }
         }
         return null;
@@ -24,7 +27,10 @@ public class EntryWrapper {
 
     public Entry getEntryForKeys(List<String> keys) {
         List<String> requestedData = new ArrayList<>();
-        keys.forEach(key -> requestedData.add(get(key)));
+//        keys.forEach(key -> requestedData.add(get(key)));
+        for (String key : keys) {
+            requestedData.add(get(key));
+        }
         return new Entry(requestedData.toArray(new String[0]));
     }
 }
