@@ -57,7 +57,6 @@ public class SelectData implements ISelectData {
                         header = header.toLowerCase();
                         queryForGivenEntity = queryForGivenEntity.replace(header, "'" + e.get(header) + "'");
                     }
-                    System.out.println(queryForGivenEntity);
                     return !operationEvaluator.isTrue(queryForGivenEntity);
                 })
                 .collect(Collectors.toList());
