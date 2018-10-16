@@ -1,5 +1,6 @@
 package com.codecool.service.fileManagement;
 
+import com.codecool.exception.MalformedQueryException;
 import com.codecool.model.Entry;
 import com.codecool.model.Table;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 @Service
 public class TableLoader implements ITableLoader {
     @Override
-    public Table getTable(String tableName) throws FileNotFoundException {
+    public Table getTable(String tableName) throws MalformedQueryException {
         Scanner scanner = getTableScanner(tableName);
         Entry headers = new Entry(scanner.nextLine(), ","); // Get first line of table, and store it as headers
 
@@ -23,9 +24,13 @@ public class TableLoader implements ITableLoader {
         return new Table(headers, tableContent);
     }
 
-    private Scanner getTableScanner(String tableName) throws FileNotFoundException {
+    private Scanner getTableScanner(String tableName) throws MalformedQueryException {
         File file = getFile(tableName);
-        return new Scanner(file);
+        try {
+            return new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new MalformedQueryException("No such table was found");
+        }
     }
 
     private List<String> getTableContentAsStrings(Scanner scanner) {
@@ -36,10 +41,14 @@ public class TableLoader implements ITableLoader {
         return tableContentAsStrings;
     }
 
-    private File getFile(String tableName) {
+    private File getFile(String tableName) throws MalformedQueryException {
         ClassLoader classLoader = getClass().getClassLoader();
         tableName = prepareTableName(tableName);
-        return new File(Objects.requireNonNull(classLoader.getResource(tableName)).getFile());
+        try {
+            return new File(Objects.requireNonNull(classLoader.getResource(tableName)).getFile());
+        } catch (NullPointerException e) {
+            throw new MalformedQueryException("No such table was found");
+        }
     }
 
     private String prepareTableName(String tableName) {

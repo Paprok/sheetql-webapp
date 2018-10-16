@@ -1,10 +1,9 @@
 package com.codecool.service.fileManagement;
 
+import com.codecool.exception.MalformedQueryException;
 import com.codecool.model.Table;
-
-import java.io.FileNotFoundException;
 
 public interface ITableLoader {
 
-    Table getTable(String tableName) throws FileNotFoundException;
+    Table getTable(String tableName) throws MalformedQueryException;
 }
