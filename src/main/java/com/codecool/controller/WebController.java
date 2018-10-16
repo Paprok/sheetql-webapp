@@ -32,5 +32,20 @@ public class WebController {
         return "shtql";
     }
 
+    @PostMapping("/shtql")
+    public String servePostRequest(@ModelAttribute UserQuery userQuery, Model model) {
+        try {
+            List<Entry> queryResult = selectData.handleQuery(userQuery.getUserQuery());
+            model.addAttribute("entryList", queryResult);
+
+        } catch (MalformedQueryException e) {
+            e.printStackTrace();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return "shtql";
+    }
 
 }
