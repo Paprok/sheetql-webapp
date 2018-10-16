@@ -1,6 +1,7 @@
 package com.codecool.service.fileManagement;
 
 import com.codecool.exception.MalformedQueryException;
+import com.codecool.model.Entry;
 import com.codecool.model.Table;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,18 +52,29 @@ public class GoogleSheetLoader implements ITableLoader {
         try {
             List<List<Object>> values = GetSheetContent(tableName);
             if (values == null || values.isEmpty()) {
-                System.out.println("No data found.");
-            } else {
-                System.out.println("Name, Major");
-                // Print columns A and E, which correspond to indices 0 and 4.
-                for (List row : values) System.out.printf("%s, %s\n", row.get(0), row.get(4));
+                throw new MalformedQueryException("Spreadsheet not found");
             }
-            return null;
+            return parseDataFromSheetToTable(values);
         } catch (GeneralSecurityException e) {
             throw new MalformedQueryException("General Security exception");
         } catch (Exception e) {
             throw new MalformedQueryException("Exception during loading Spread Sheet");
         }
+    }
+
+    private Table parseDataFromSheetToTable(List<List<Object>> values) {
+        Entry headers = parseRowToEntry(values.get(0));
+        List<Entry> content = new ArrayList<>();
+        for (int i = 1; i < values.size(); i++) {
+            content.add(parseRowToEntry(values.get(i)));
+        }
+        return new Table(headers, content);
+    }
+
+    private Entry parseRowToEntry(List<Object> row) {
+        List<String> entryData = new ArrayList<>();
+        row.forEach(element -> entryData.add((String) element));
+        return new Entry(entryData.toArray(new String[0]));
     }
 
     private List<List<Object>> GetSheetContent(String tableName) throws Exception {
