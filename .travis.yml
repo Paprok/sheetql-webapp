@@ -18,3 +18,4 @@ deploy:
   branch: master
   on:
     repo: saturator22/sheetql-webapp
+  skip_cleanup: true
