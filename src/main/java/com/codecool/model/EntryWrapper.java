@@ -8,7 +8,7 @@ public class EntryWrapper {
     private final Entry entry;
     private final Entry headers;
 
-    public EntryWrapper(Entry entry, Entry headers) {
+    EntryWrapper(Entry entry, Entry headers) {
         this.entry = entry;
         this.headers = headers;
     }
