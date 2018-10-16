@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 @Service
 public class LogicalOperationEvaluator implements ILogicalOperationEvaluator {
@@ -60,19 +57,11 @@ public class LogicalOperationEvaluator implements ILogicalOperationEvaluator {
 
     private String getLikeOperationFrom(String query) throws MalformedQueryException {
         String[] words = query.split(" ");
-        for(int i = 0; i < words.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             if (words[i].equalsIgnoreCase("LIKE")) {
-                return words[i-1] + " " + words[i] + " " + words[i+1];
+                return words[i - 1] + " " + words[i] + " " + words[i + 1];
             }
         }
         throw new MalformedQueryException("Invalid LIKE operation syntax");
     }
-
-    List<Predicate<String>> tests = new ArrayList<>();
-
-    private void updateTests(String whereClause) {
-        whereClause = "firstname like 'dupa'" +
-                " or last_name like 'dupa' " +
-                "or 7 like '7'";
-    }
- }
+}
