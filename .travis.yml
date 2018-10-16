@@ -13,7 +13,8 @@ deploy:
     secure: UHJl00YGboWDvkh7UNtfG0JWwOO30iAnFCQjJ7r+otRNNM/n6LpjhfDuLtM4E/43FelqGbpdm+TO6zYiJIIRUO1U/DU9qqn1Uc4HtrXGA5eFMWoGILdw5EcRK6Yk1SWuCtjtDnID0oHmXMm04y3us/bCVijVz/m1KVZsb7k5hR0ZOmL/mkjPNLADTuvoKiwaWwee5fGQ3WNywcmAhKf4QZrvW0/+1Bpq4kurSS86eGfYZgcFP1qZe2ehbXI+24uGZIiyrCA47V2Q3uvUmhVor/54N6YAXkHtlmrZ7uoKm0rlgqi7q0Aoq2zBrv446m8S/+5JAcgpz7HG1QeEQOtJe2pNVMvOAqQWoXvFHX10YSFW8yC6X8odBh/l2MEr9AFXetlThf+aG2HaSbgsPDbWd2Y3lD9uiLLd6Oj3M6mO1xVUT9QBVtJcYh58uqKaMdXLOqOptwPqlIgNA6DCvH+QKPm3+hBELNavODYTScFFTbrlNSoK0SNmcwPG4fw1jG057CIhvFWDTiZs8awdhQpRdg+7PfjJqYD3+na7e+EPCi0w5Be7hUzN/yE9ioNFBfpHkwaDvkrefR0kb5Pt/xy7zuJPdYpjp/XjFeAZwqgVrKyZ3jZKeIIBPkn9rUvyuFrxaP9yF0a1xpArYTcf2b7mCDOO8Z3vTfAkcdJ6vD235/0=
   app: sqlsheet
   on:
-    branch: master
+    repo: saturator22/sheetql-webapp
+
 notifications:
   email:
     on_success: never
