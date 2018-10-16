@@ -11,6 +11,9 @@ notifications:
   email:
     on_success: never
     on_failure: never
+branches:
+  only:
+  - master
 deploy:
   provider: heroku
   api_key:
@@ -18,5 +21,3 @@ deploy:
   on:
     repo: saturator22/sheetql-webapp
   skip_cleanup: true
-  branches:
-    only: master
