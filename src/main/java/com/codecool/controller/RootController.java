@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-@Component
 public class RootController implements CommandLineRunner {
 
     private final UserInput userInput;
@@ -23,7 +22,6 @@ public class RootController implements CommandLineRunner {
     private final QueryResultPrinter resultPrinter;
     private boolean isRunning = true;
 
-    @Autowired
     public RootController(UserInput userInput, ISelectData selectData, IQueryValidator queryValidator, QueryResultPrinter resultPrinter) {
         this.userInput = userInput;
         this.selectData = selectData;
@@ -31,7 +29,6 @@ public class RootController implements CommandLineRunner {
         this.resultPrinter = resultPrinter;
     }
 
-    @Override
     public void run(String... args) {
         try {
             while (isRunning) {
