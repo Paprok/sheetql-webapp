@@ -4,9 +4,21 @@
     <title>shtql</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
+
+<header class="headerWrapper">
+
+    <div class="header-limiter">
+        <img id="headerLogo" src="../static/images/logoSmall.png" th:src="@{/images/logoSmall.png}" alt="shtql Logo">
+        <h1 id="logoDesc"><a href="#">Sht<span>Sql</span></a></h1>
+
+    </div>
+
+</header>
+
 <div id="flexContainer">
 
     <!--<table>-->
@@ -47,6 +59,14 @@
         <!--</tbody>-->
     <!--</table>-->
 
+    <div id="queryBox">
+        <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
+            <p>query:</p>
+            <input id="queryInput" type="text" th:field="*{userQuery}" />
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+
     <div th:if="${entryList != null}">
         <table th:object="${entryList}" id="userTable" border="1">
             <tr th:each="entry :${entryList}">
@@ -55,13 +75,7 @@
         </table>
     </div>
 
-    <div id="queryBox">
-        <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
-            <p>query:</p>
-            <input id="queryInput" type="text" th:field="*{userQuery}" />
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
-    </div>
+
 </div>
 
 </body>
