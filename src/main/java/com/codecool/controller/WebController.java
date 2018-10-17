@@ -34,8 +34,10 @@ public class WebController {
     @PostMapping("/shtql")
     public String servePostRequest(@ModelAttribute UserQuery userQuery, Model model) {
         try {
+            Entry headers = selectData.retriveTableHeaders(userQuery.getUserQuery());
             List<Entry> queryResult = selectData.handleQuery(userQuery.getUserQuery());
             model.addAttribute("entryList", queryResult);
+            model.addAttribute("headersEntrys", headers);
 
         } catch (MalformedQueryException e) {
             e.printStackTrace();

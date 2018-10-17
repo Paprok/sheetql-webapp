@@ -33,6 +33,11 @@ public class SelectData implements ISelectData {
         return filterDataIfRequired(query, table, columnNames);
     }
 
+    public Entry retriveTableHeaders(String query) throws MalformedQueryException, FileNotFoundException {
+        Table table = getRequestedTable(query);
+        return table.getHeaders();
+    }
+
     private List<Entry> filterDataIfRequired(String query, Table table, List<String> columnNames) throws MalformedQueryException {
         if (query.toLowerCase().contains("where")) {
             updateTableBasedOnWhereClause(query, table);
