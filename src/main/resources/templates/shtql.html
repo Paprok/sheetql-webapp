@@ -36,12 +36,18 @@
                     <th th:each="header :${headersEntrys.getContent()}" th:text="${header}"></th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr th:each="entry :${entryList}">
                     <td  th:each="entryContent :${entry.getContent()}" th:text="${entryContent}"></td>
                 </tr>
             </tbody>
         </table>
+        <p id="warningMessage" th:if="${#lists.isEmpty(entryList)}">No matching results found...</p>
+    </div>
+
+    <div id="errorMessage">
+        <p th:if="${malformedQueryException != null}" th:text="${malformedQueryException.getMessage()}"/>
     </div>
 
 
