@@ -72,7 +72,6 @@ body {
 
 #resultBox {
   overflow-x: scroll;
-  display: flex;
   justify-content: center;
 
 }
