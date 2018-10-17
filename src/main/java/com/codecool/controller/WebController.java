@@ -34,6 +34,7 @@ public class WebController {
     @PostMapping("/shtql")
     public String servePostRequest(@ModelAttribute UserQuery userQuery, Model model) {
         try {
+            queryValidator.validateQuery(userQuery.getUserQuery());
             Entry headers = selectData.retriveTableHeaders(userQuery.getUserQuery());
             List<Entry> queryResult = selectData.handleQuery(userQuery.getUserQuery());
             model.addAttribute("entryList", queryResult);
