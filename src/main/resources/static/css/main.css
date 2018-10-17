@@ -98,3 +98,11 @@ body {
   background-color: #00a467;
   color: white;
 }
+
+#errorMessage {
+  color: #bf5555;
+}
+
+#warningMessage {
+  color: goldenrod;
+}
