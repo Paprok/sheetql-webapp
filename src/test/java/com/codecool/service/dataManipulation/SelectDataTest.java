@@ -3,34 +3,35 @@ package com.codecool.service.dataManipulation;
 import com.codecool.exception.MalformedQueryException;
 import com.codecool.model.Entry;
 import com.codecool.service.fileManagement.TableLoader;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class SelectDataTest {
+
+public class SelectDataTest {
 
     private SelectData testSubject = new SelectData(new TableLoader(), new LogicalOperationEvaluator());
 
     @Test
-    void Should_CorrectlyExtractRequestedData_When_NotUsedStarSelector() {
+    public void Should_CorrectlyExtractRequestedData_When_NotUsedStarSelector() {
         String query = "Select id, name from table where id = 4 and age > 5;";
         String expected = "id, name";
         assertEquals(expected, testSubject.getRequestedDataFromQuery(query).toLowerCase());
     }
 
     @Test
-    void Should_CorrectlyExtractLogicalOperation() {
+    public void Should_CorrectlyExtractLogicalOperation() {
         String query = "Select id, name from table where id = 4 and age > 5;";
         String expected = "id = 4 and age > 5";
         assertEquals(expected, testSubject.getLogicalOperationFromQuery(query).toLowerCase());
     }
 
     @Test
-    void Should_ReturnValidIndexes_When_WorkingOnQuery() {
+    public void Should_ReturnValidIndexes_When_WorkingOnQuery() {
         String[] headersArray = new String[] {"col1", "col2", "col3", "col4"};
         Entry headers = new Entry(headersArray);
         String query = "Select col1, col4 from table".toUpperCase();
@@ -42,7 +43,7 @@ class SelectDataTest {
     }
 
     @Test
-    void Should_ReturnOnlyRequestedColumns_When_NotUsedStarSelector() throws FileNotFoundException, MalformedQueryException {
+    public void Should_ReturnOnlyRequestedColumns_When_NotUsedStarSelector() throws FileNotFoundException, MalformedQueryException {
         String query = "Select col1, col3 from test1;";
         List<Entry> result = testSubject.handleQuery(query);
         List<Entry> expected = new ArrayList<>();
@@ -55,7 +56,7 @@ class SelectDataTest {
     }
 
     @Test
-    void Should_HandleWhereClause() throws FileNotFoundException, MalformedQueryException {
+    public void Should_HandleWhereClause() throws FileNotFoundException, MalformedQueryException {
         String query = "Select * from test1 where col1 = 'r2c1';";
         List<Entry> result = testSubject.handleQuery(query);
         List<Entry> expected = new ArrayList<>();

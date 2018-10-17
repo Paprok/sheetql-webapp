@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>shtql</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Cookie' th:href="@{http://fonts.googleapis.com/css?family=Cookie}" rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<header class="headerWrapper">
+
+    <div class="header-limiter">
+        <img id="headerLogo" src="../static/images/logoSmall.png" th:src="@{/images/logoSmall.png}" alt="shtql Logo">
+        <h1 id="logoDesc"><a href="#">Sht<span>Sql</span></a></h1>
+
+    </div>
+
+</header>
+
+<div id="flexContainer">
+
+    <div id="queryBox">
+        <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
+            <p>query:</p>
+            <input id="queryInput" type="text" th:field="*{userQuery}" />
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+
+    <div id="resultBox" th:if="${entryList != null and headersEntrys != null}">
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th th:each="header :${headersEntrys.getContent()}" th:text="${header}"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry :${entryList}">
+                    <td  th:each="entryContent :${entry.getContent()}" th:text="${entryContent}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
