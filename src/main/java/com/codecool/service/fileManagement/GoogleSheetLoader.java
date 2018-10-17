@@ -50,7 +50,7 @@ public class GoogleSheetLoader implements ITableLoader {
     @Override
     public Table getTable(String tableName) throws MalformedQueryException {
         try {
-            List<List<Object>> values = GetSheetContent(tableName);
+            List<List<Object>> values = getSheetContentForRequired(tableName);
             if (values == null || values.isEmpty()) {
                 throw new MalformedQueryException("Spreadsheet not found");
             }
@@ -60,6 +60,15 @@ public class GoogleSheetLoader implements ITableLoader {
         } catch (Exception e) {
             throw new MalformedQueryException("Exception during loading Spread Sheet");
         }
+    }
+
+    private List<List<Object>> getSheetContentForRequired(String table) throws Exception {
+        if (!table.contains("->")) {
+            return GetSheetContent(table);
+        }
+        String id = table.split("->")[0];
+        String tableName = table.split("->")[1];
+        return GetSheetContent(id, tableName);
     }
 
     private Table parseDataFromSheetToTable(List<List<Object>> values) {
@@ -78,15 +87,21 @@ public class GoogleSheetLoader implements ITableLoader {
     }
 
     private List<List<Object>> GetSheetContent(String tableName) throws Exception {
+        return handleHttpTransport("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", tableName);
+    }
+
+    private List<List<Object>> GetSheetContent(String id, String tableName) throws Exception {
+        return handleHttpTransport(id, tableName);
+    }
+
+    private List<List<Object>> handleHttpTransport(String id, String tableName) throws Exception {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        // Sample Range = Class Data
-        final String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
         final String range = tableName.replace("_", " ").replace(";", "");
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
         ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, range)
+                .get(id, range)
                 .execute();
         return response.getValues();
     }
