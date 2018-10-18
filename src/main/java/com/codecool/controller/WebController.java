@@ -41,10 +41,7 @@ public class WebController {
             model.addAttribute("headersEntrys", headers);
 
         } catch (MalformedQueryException e) {
-            e.printStackTrace();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            model.addAttribute("malformedQueryException", e);
         }
 
         return "shtql";
