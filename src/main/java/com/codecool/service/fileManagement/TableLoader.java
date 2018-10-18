@@ -35,9 +35,7 @@ public class TableLoader implements ITableLoader {
 
     private List<String> getTableContentAsStrings(Scanner scanner) {
         List<String> tableContentAsStrings = new ArrayList<>();
-        while (scanner.hasNext()) {
-            tableContentAsStrings.add(scanner.nextLine());
-        }
+        scanner.forEachRemaining(tableContentAsStrings::add);
         return tableContentAsStrings;
     }
 
