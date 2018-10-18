@@ -16,7 +16,7 @@ body {
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.15);
   height: 80px;
   background-color: lightgray;
-  background-image: linear-gradient(#b3b3b3, #ffffff);
+  background-image: linear-gradient(#b3b3b3, whitesmoke);
 }
 
 .headerWrapper .header-limiter {
