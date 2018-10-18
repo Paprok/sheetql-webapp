@@ -133,3 +133,8 @@ body {
 #warningMessage {
   color: goldenrod;
 }
+
+.errorDesc {
+  font-family: Trebuchet MS;
+  font-size: 3vh;
+}
