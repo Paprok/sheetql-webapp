@@ -22,9 +22,9 @@
 
     <div id="queryBox">
         <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
-            <p>query:</p>
+            <p id="formDesc">Enter your query:</p>
             <input id="queryInput" type="text" th:field="*{userQuery}" />
-            <p><input type="submit" value="Submit" /></p>
+            <p id="formControlls"><input id="proceedQuerryButton" type="submit" value="Submit" /></p>
         </form>
     </div>
 

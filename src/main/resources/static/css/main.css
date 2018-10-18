@@ -68,10 +68,36 @@ body {
 }
 
 #queryInput {
-  width: 100%;
+  width: 99%;
+}
+
+#proceedQuerryButton {
+  background-color: #00a467;
+  color: whitesmoke;
+  padding: 5px 40px;
+  font-size: 15px;
+}
+
+#proceedQuerryButton:hover {
+  color: #00a467;
+  background-color: whitesmoke;
+}
+
+#formControlls {
+  background-color: lightgray;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+#formDesc {
+  font-family: Trebuchet MS;
+  color: #696868;
+  font-size: 3vh;
+  margin-bottom: 0%;
 }
 
 #resultBox {
+  padding-top: 2%;
   overflow-x: scroll;
   justify-content: center;
 
