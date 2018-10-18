@@ -27,10 +27,15 @@ public class SelectData implements ISelectData {
     }
 
     @Override
-    public List<Entry> handleQuery(String query) throws MalformedQueryException, FileNotFoundException {
+    public List<Entry> handleQuery(String query) throws MalformedQueryException {
         Table table = getRequestedTable(query);
         List<String> columnNames = getColumnsToRetrieve(query, table.getHeaders());
         return filterDataIfRequired(query, table, columnNames);
+    }
+
+    public Entry retriveTableHeaders(String query) throws MalformedQueryException {
+        Table table = getRequestedTable(query);
+        return table.getHeaders();
     }
 
     private List<Entry> filterDataIfRequired(String query, Table table, List<String> columnNames) throws MalformedQueryException {
@@ -77,7 +82,7 @@ public class SelectData implements ISelectData {
         return columns;
     }
 
-    private Table getRequestedTable(String query) throws MalformedQueryException, FileNotFoundException {
+    private Table getRequestedTable(String query) throws MalformedQueryException {
         String requestedTableName = getRequestedTableNameFromQuery(query);
         return tableLoader.getTable(requestedTableName);
     }

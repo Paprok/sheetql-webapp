@@ -1,3 +1,7 @@
+html {
+  background-color: whitesmoke;
+}
+
 body {
   font-size: 2vh;
   font-family: "Open Sans", sans-serif;
@@ -7,18 +11,20 @@ body {
 }
 
 .headerWrapper{
-  padding: 5px 40px;
+  padding-top: 0.2vh;
   box-sizing:border-box;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.15);
   height: 80px;
-  background-color: #fff;
+  background-color: lightgray;
 }
 
 .headerWrapper .header-limiter {
+  padding-top: 1vh;
   max-width: 1200px;
   text-align: center;
   margin: 0 auto;
   height: inherit;
+  width: 80%;
 }
 
 #headerLogo {
@@ -26,34 +32,22 @@ body {
   float: left;
 }
 
-.logoDesc {
-  display: inline-block;
-  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
-  line-height: 40px;
-  margin: 0;
-}
-
 .headerWrapper .header-limiter h1{
-  padding-top: 1.5%;
   text-align: center;
-  font: normal 55px Cookie, Arial, Helvetica, sans-serif;
-  line-height: 40px;
+  font: normal 60px Cookie, Arial, Helvetica, sans-serif;
   margin: 0;
 }
 
 .headerWrapper .header-limiter h1 span {
-  color: #5383d3;
+  color: #5c616a;
 }
 
-/* The header links */
-
 .headerWrapper .header-limiter a {
-  color: #5c616a;
+  color: #00a467;
   text-decoration: none;
 }
 
 #flexContainer {
-  padding-top: 4vh;
   display: block;
   align-items: center;
   justify-content: center;
@@ -76,85 +70,39 @@ body {
   width: 100%;
 }
 
-table {
-  border: 1px solid #ccc;
+#resultBox {
+  overflow-x: scroll;
+  justify-content: center;
+
+}
+
+#resultTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
+  white-space: nowrap;
 }
 
-table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
-}
-
-table tr {
-  background-color: #f8f8f8;
+#resultTable td, #resultTable th {
   border: 1px solid #ddd;
-  padding: .35em;
+  padding: 8px;
 }
 
-table th,
-table td {
-  padding: .625em;
-  text-align: center;
+#resultTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#resultTable tr:hover {background-color: #ddd;}
+
+#resultTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #00a467;
+  color: white;
 }
 
-table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+#errorMessage {
+  color: #bf5555;
 }
 
-@media screen and (max-width: 600px) {
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-  }
-  
-  table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  table td:last-child {
-    border-bottom: 0;
-  }
-
-
+#warningMessage {
+  color: goldenrod;
 }

@@ -17,9 +17,7 @@ public class Table {
 
     private List<EntryWrapper> wrapContent() {
         List<EntryWrapper> result = new ArrayList<>();
-        for (Entry e : tableContent) {
-            result.add(new EntryWrapper(e, headers));
-        }
+        tableContent.forEach(e -> result.add(new EntryWrapper(e, headers)));
         return result;
     }
 
