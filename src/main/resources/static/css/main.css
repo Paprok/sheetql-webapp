@@ -128,10 +128,12 @@ body {
 
 #errorMessage {
   color: #bf5555;
+  text-align: center;
 }
 
 #warningMessage {
   color: goldenrod;
+  text-align: center;
 }
 
 .errorDesc {
