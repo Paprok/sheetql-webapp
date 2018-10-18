@@ -10,16 +10,13 @@
 <body>
 
 <header class="headerWrapper">
-
     <div class="header-limiter">
         <img id="headerLogo" src="../static/images/logoSmall.png" th:src="@{/images/logoSmall.png}" alt="shtql Logo">
         <h1 id="logoDesc"><a href="#">Sht<span>Sql</span></a></h1>
     </div>
-
 </header>
 
 <div id="flexContainer">
-
     <div id="queryBox">
         <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
             <p id="formDesc">Enter your query:</p>
@@ -27,6 +24,8 @@
             <p id="formControlls"><input id="proceedQuerryButton" type="submit" value="Submit" /></p>
         </form>
     </div>
+
+
 
     <div id="resultBox" th:if="${entryList != null and headersEntrys != null}">
         <table id="resultTable">
@@ -42,16 +41,13 @@
                 </tr>
             </tbody>
         </table>
-        <p id="warningMessage" th:if="${#lists.isEmpty(entryList)}">No matching results found...</p>
+        <p id="warningMessage" class="errorDesc" th:if="${#lists.isEmpty(entryList)}">No matching results found...</p>
     </div>
 
     <div id="errorMessage">
-        <p th:if="${malformedQueryException != null}" th:text="${malformedQueryException.getMessage()}"/>
+        <p class="errorDesc" th:if="${malformedQueryException != null}" th:text="${malformedQueryException.getMessage()}"/>
     </div>
-
-
 </div>
 
 </body>
-
 </html>
