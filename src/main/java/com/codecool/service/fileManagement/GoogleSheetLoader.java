@@ -74,9 +74,9 @@ public class GoogleSheetLoader implements ITableLoader {
     private Table parseDataFromSheetToTable(List<List<Object>> values) {
         Entry headers = parseRowToEntry(values.get(0));
         List<Entry> content = new ArrayList<>();
-        for (int i = 1; i < values.size(); i++) {
-            content.add(parseRowToEntry(values.get(i)));
-        }
+        values.stream()
+                .skip(1)  // Skip headers
+                .forEach(row -> content.add(parseRowToEntry(row)));
         return new Table(headers, content);
     }
 
