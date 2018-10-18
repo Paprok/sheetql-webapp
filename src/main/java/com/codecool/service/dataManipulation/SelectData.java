@@ -51,17 +51,19 @@ public class SelectData implements ISelectData {
     private void updateTableBasedOnWhereClause(String query, Table table) throws MalformedQueryException {
         final String logicalOperation = operationEvaluator.prepareQuery(getLogicalOperationFromQuery(query));
         List<EntryWrapper> toDelete = table.getWrappedContent().stream()
-                .filter(e -> {
-                    String queryForGivenEntity = logicalOperation.toLowerCase();
-                    for (String header : table.getHeaders().getContent()) {
-                        header = header.toLowerCase();
-                        queryForGivenEntity = queryForGivenEntity.replace(header, "'" + e.get(header) + "'");
-                    }
-                    return !operationEvaluator.isTrue(queryForGivenEntity);
-                })
+                .filter(e -> !isMatched(logicalOperation, table, e))
                 .collect(Collectors.toList());
 
         toDelete.forEach(table::remove);
+    }
+
+    private boolean isMatched(String logicalOperation, Table table, EntryWrapper element) {
+        String queryForGivenEntity = logicalOperation.toLowerCase();
+        for (String header : table.getHeaders().getContent()) {
+            header = header.toLowerCase();
+            queryForGivenEntity = queryForGivenEntity.replace(header, "'" + element.get(header) + "'");
+        }
+        return operationEvaluator.isTrue(queryForGivenEntity);
     }
 
     List<String> getColumnsToRetrieve(String query, Entry headers) {
