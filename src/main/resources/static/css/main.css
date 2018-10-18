@@ -71,14 +71,14 @@ body {
   width: 99%;
 }
 
-#proceedQuerryButton {
+.button {
   background-color: #00a467;
   color: whitesmoke;
   padding: 5px 40px;
   font-size: 15px;
 }
 
-#proceedQuerryButton:hover {
+#button:hover {
   color: #00a467;
   background-color: whitesmoke;
 }
@@ -129,6 +129,7 @@ body {
 #errorMessage {
   color: #bf5555;
   text-align: center;
+  padding-bottom: 10vh;
 }
 
 #warningMessage {
@@ -140,3 +141,71 @@ body {
   font-family: Trebuchet MS;
   font-size: 3vh;
 }
+
+.exampleDesc {
+  font-family: Trebuchet MS;
+  font-size: 2.6vh;
+}
+
+.smallerPic {
+  max-width: 70%;
+  height: auto;
+}
+
+.instructionsBulletPoints {
+  margin-top: 0;
+}
+
+/*p {*/
+  /*font-family: Trebuchet MS;*/
+  /*color: #15362c;*/
+  /*font-size: 2.6vh;*/
+/*}*/
+
+.instructionsPic {
+  width: 99%;
+}
+
+#instructions {
+  display: none;
+  width: 100%;
+  margin-top: -2vh;
+  background-color: lightgrey;
+  padding-bottom: 2vh;
+}
+
+.instructionsBulletPoints{
+  padding-top: 10px;
+  margin-top: 0;
+}
+
+.contents {
+  background: yellow;
+  color: rgba(0, 0, 0, .8);
+  padding: 20px;
+  margin:0;
+}
+.slide-up, .slide-down {
+  overflow:hidden
+}
+.slide-up > div, .slide-down > div {
+  margin-top: -25%;
+  transition: margin-top 0.4s ease-in-out;
+}
+.slide-down > div {
+  margin-top: 0;
+}
+
+#instructionsButton {
+  color: #00a467;
+  border: none;
+  background-color: lightgray;
+}
+
+#instructionsButton:hover {
+  color: lightgray;
+  border: none;
+  background-color: #00a467;
+}
+
+button:focus {outline:0;}
