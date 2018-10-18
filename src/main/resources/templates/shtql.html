@@ -17,15 +17,81 @@
 </header>
 
 <div id="flexContainer">
+
     <div id="queryBox">
         <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
             <p id="formDesc">Enter your query:</p>
-            <input id="queryInput" type="text" th:field="*{userQuery}" />
-            <p id="formControlls"><input id="proceedQuerryButton" type="submit" value="Submit" /></p>
+            <div>
+                <input id="queryInput" type="text" th:field="*{userQuery}" />
+                <p id="formControlls">
+                    <input class="button" type="submit" value="Submit"/>
+                    <button id="instructionsButton" class="button" type="button" onclick="showInstructions()">Instructions</button>
+                </p>
+            </div>
         </form>
     </div>
 
+    <div id="instructions" class="exampleDesc" style="display: none;">
+        <ul class="instructionsBulletPoints">
+            <li>
+                <p>Use only single quotes in your query (').
+                </p>
+            </li>
 
+            <li>
+                <p>You can use any spreadsheet you like,
+                    the only thing you need, is a sheet Id and its name.
+                </p>
+            </li>
+
+            <li>
+                <p> Where I can find spreadsheet id?
+                </p>
+                <img class="instructionsPic" src="../static/images/findDocId.png" th:src="@{/images/findDocId.png}" alt="sheet id">
+            </li>
+
+            <li>
+                <p> Where I can find table name?
+                </p>
+                <img class="instructionsPic" src="../static/images/tableName.png" th:src="@{/images/tableName.png}" alt="table name">
+            </li>
+
+            <li>
+                <p>Insert spreadsheet id after 'FROM' keyword,
+                    then add '->' and insert table name with '_' instead of spaces.
+                </p>
+                <p> Example:
+                </p>
+                <p><blockquote><i>
+                    SELECT * FROM 1n4lDtIZasgasasagfgzDJOOpRzOBYKqI->Table_Name;
+                </i></blockquote>
+                </p>
+            </li>
+
+            <li>
+                <p>Check spreadsheet sharing settings: it should be available for anyone with a link.
+                </p>
+                <img class="instructionsPic" style="max-width: 60%" src="../static/images/sharingSettings.png" th:src="@{/images/sharingSettings.png}" alt="availability">
+            </li>
+
+            <li>
+                <p>Try with demo data: </p>
+
+                <p><blockquote><i>
+                    SELECT * FROM student_data;
+                </i></blockquote></p>
+
+                <p><blockquote><i>
+                SELECT * FROM class_data where Major like 'Ma';
+                </i></blockquote></p>
+
+                <p><blockquote><i>
+                SELECT * FROM class_data where Major like 'Ma';
+            </i></blockquote></p>
+            </li>
+
+        </ul>
+    </div>
 
     <div id="resultBox" th:if="${entryList != null and headersEntrys != null}">
         <table id="resultTable">
@@ -49,5 +115,16 @@
     </div>
 </div>
 
+<script>
+    function showInstructions() {
+        var x = document.getElementById("instructions");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 </body>
+
 </html>
