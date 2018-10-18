@@ -14,7 +14,6 @@
     <div class="header-limiter">
         <img id="headerLogo" src="../static/images/logoSmall.png" th:src="@{/images/logoSmall.png}" alt="shtql Logo">
         <h1 id="logoDesc"><a href="#">Sht<span>Sql</span></a></h1>
-
     </div>
 
 </header>
@@ -25,7 +24,7 @@
         <form id="queryForm" action="#" th:action="@{/shtql}" th:object="${userQuery}" method="post">
             <p>query:</p>
             <input id="queryInput" type="text" th:field="*{userQuery}" />
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            <p><input type="submit" value="Submit" /></p>
         </form>
     </div>
 
